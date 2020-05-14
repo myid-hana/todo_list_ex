@@ -41,9 +41,7 @@ class _TodoAppState extends State<TodoApp> {
   Widget _buildItemWidget(Todo todo){   //Todo의 isDone과 title을 todo로 받는다.
     return ListTile(
       onTap: () {   //ListTile을 누를 때마다
-        setState(() {   //상태가 변한다.
-          todo.isDone = !todo.isDone;   //true - false 로 변환됨.
-        });
+        _toggleTodo(todo);
       },
       title: Text(
         todo.title,
@@ -58,7 +56,14 @@ class _TodoAppState extends State<TodoApp> {
     );
   }
 
-  void _toggleTodo(todo) {
+  void _addItem(Todo todo){
+    setState(() {
+      _item.add(todo);
+      _todoController.text = '';
+    });
+  }
+
+  void _toggleTodo(Todo todo) {
     setState(() {
       //상태변화
       todo.isDone = !todo.isDone;
@@ -87,7 +92,9 @@ class _TodoAppState extends State<TodoApp> {
                     'Add',
                     style: TextStyle(color: Colors.black38),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _addItem(Todo(_todoController.text));
+                  },
                 ),
               ],
             ),
