@@ -21,6 +21,15 @@ class TodoApp extends StatefulWidget {
 }
 
 class _TodoAppState extends State<TodoApp> {
+  void _toggleTodo(todo) {
+    setState(() {
+      //상태변화
+      todo.isDone = !todo.isDone;
+    });
+  }
+
+  bool isDone = false;  //처음에는 false로 선언해준다.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +43,14 @@ class _TodoAppState extends State<TodoApp> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: TextField(
-
-                  ),
+                  child: TextField(),
                 ),
                 RaisedButton(
-                  child: Text('Add', style: TextStyle(color: Colors.black38),),
-                  onPressed: (){},
+                  child: Text(
+                    'Add',
+                    style: TextStyle(color: Colors.black38),
+                  ),
+                  onPressed: () {},
                 ),
               ],
             ),
@@ -48,10 +58,18 @@ class _TodoAppState extends State<TodoApp> {
               child: ListView(
                 children: <Widget>[
                   ListTile(
-                    title: Text("to do 1", style: TextStyle(
-                      decoration: TextDecoration.lineThrough,
-                      fontStyle: FontStyle.italic,
-                    ),),
+                    onTap: () {   //ListTile을 누를 때마다
+                      setState(() {   //상태가 변한다.
+                        isDone = !isDone;   //true - false
+                      });
+                    },
+                    title: Text(
+                      "to do 1",
+                      style: isDone ? TextStyle(    //isDone이 true이면 style적용, false이면 style : null
+                        decoration: TextDecoration.lineThrough,
+                        fontStyle: FontStyle.italic,
+                      ) : null,
+                    ),
                     trailing: IconButton(
                       icon: Icon(Icons.delete_forever),
                     ),
@@ -65,3 +83,4 @@ class _TodoAppState extends State<TodoApp> {
     );
   }
 }
+
