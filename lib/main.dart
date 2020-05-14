@@ -39,7 +39,8 @@ class _TodoAppState extends State<TodoApp> {
                   ),
                 ),
                 RaisedButton(
-                  child: Text('Add'),
+                  child: Text('Add', style: TextStyle(color: Colors.black38),),
+                  onPressed: (){},
                 ),
               ],
             ),
