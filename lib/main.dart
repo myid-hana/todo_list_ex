@@ -52,6 +52,9 @@ class _TodoAppState extends State<TodoApp> {
       ),
       trailing: IconButton(
         icon: Icon(Icons.delete_forever),
+        onPressed: (){
+          _deleteTodo(todo);
+        },
       ),
     );
   }
@@ -67,6 +70,12 @@ class _TodoAppState extends State<TodoApp> {
     setState(() {
       //상태변화
       todo.isDone = !todo.isDone;
+    });
+  }
+
+  void _deleteTodo(Todo todo){
+    setState(() {
+      _item.remove(todo);
     });
   }
 
