@@ -44,6 +44,18 @@ class _TodoAppState extends State<TodoApp> {
                 ),
               ],
             ),
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                    title: Text("to do 1"),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete_forever),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
