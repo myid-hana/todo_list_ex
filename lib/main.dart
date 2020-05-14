@@ -30,6 +30,13 @@ class TodoApp extends StatefulWidget {
 class _TodoAppState extends State<TodoApp> {
 
   final _item = <Todo>[];  //Todo 값을 받아서 비어있는 배열을 만들어준다.
+  var _todoController = TextEditingController();  //입력값 받아주기.
+
+  @override
+  void dispose(){
+    _todoController.dispose();
+    super.dispose();
+  }
 
   Widget _buildItemWidget(Todo todo){   //Todo의 isDone과 title을 todo로 받는다.
     return ListTile(
@@ -71,7 +78,9 @@ class _TodoAppState extends State<TodoApp> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: TextField(),
+                  child: TextField(
+                    controller: _todoController,
+                  ),
                 ),
                 RaisedButton(
                   child: Text(
