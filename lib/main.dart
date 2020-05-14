@@ -48,7 +48,10 @@ class _TodoAppState extends State<TodoApp> {
               child: ListView(
                 children: <Widget>[
                   ListTile(
-                    title: Text("to do 1"),
+                    title: Text("to do 1", style: TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      fontStyle: FontStyle.italic,
+                    ),),
                     trailing: IconButton(
                       icon: Icon(Icons.delete_forever),
                     ),
